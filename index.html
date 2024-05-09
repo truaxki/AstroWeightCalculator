@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> 
+  <meta charset="utf-8">
+  <title>Astro Weight Calculator</title>
+  <style>
+    /* Sets the font across the whole page, removes margins and padding for a full-width effect, 
+       and ensures that the entire viewport height is used. Also applies a flex display to align children centrally. */
+
+       body {
+        font-family: 'Press Start 2P', cursive;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: url('SolarSystem.png') no-repeat center center fixed;
+        background-size: cover;
+        color: white;
+    }
+
+    /* Container for form elements, centered text, and style adjustments for background and shadow. */
+    .container {
+        text-align: center;
+        background: url('SolarSystemContainer.png')  center center;
+        background-size: 100% 100%;
+        width: 80vw;
+        height: calc(80vw * (16/9));
+        max-width: 300px;
+        max-height: 425px;
+        padding: 45px 20px 20px 20px; /* Add padding to ensure content doesn't touch the edges */
+        box-sizing: border-box; /* Includes padding in the width calculation */
+}
+
+/* The @ media is to create a sepperate container for mobile platforms.  */
+@media (max-width: 600px) {
+    .container {
+        min-width: 95vw;  /* Increase width on smaller screens */
+        min-height: calc(95vw * (425 / 300));  /* Adjust min-height to maintain aspect ratio */
+        padding: 20px;  /* Reduce padding on smaller devices */
+        background-size: 100% 100%;  /* Scale height to 100%, width auto scales */
+        background-position: center;
+    }
+}
+
+    /* General styling for label, input, select, and button elements within the container. */
+    label, input, select, button {
+        display: block; /* Makes each element block-level which causes it to occupy the full width available. */
+        margin: 10px auto; /* Adds top and bottom margin, auto centers these elements horizontally. */
+        width: calc(100% - 40px); /* Width calculation to ensure padding does not push the content outside the container width. */
+        height: 40px; /* Sets a fixed height for input, select, and button elements for uniformity. */
+    }
+
+    /* Additional styling for input fields, dropdown lists, and buttons for better interaction and appearance. */
+    input, select, button {
+        font-family: 'Press Start 2P', cursive;
+        /* Additional styling */
+        font-size: 14px; /* Setting a larger font size for better readability */
+        padding: 0 10px; /* Adds padding inside the elements on the left and right. */
+        border: 1px solid #ccc; /* Adds a light grey border around the elements. */
+        border-radius: 5px; /* Slightly rounds the corners of the elements. */
+    }
+
+    /* Special styling for the button to enhance clickability and aesthetics. */
+    button {
+        cursor: pointer; /* Changes the cursor to a pointer to indicate that the button is clickable. */
+        background: #0f2027; /* Dark blue background for the button to stand out. */
+        color: white; /* White text for contrast against the dark background. */
+        font-weight: bold; /* Makes the button text bold for emphasis. */
+    }
+
+    /* Styles the output paragraph to separate it visually from other elements. */
+    #output {
+        margin-top: 20px; /* Adds space above the output paragraph to separate it from other elements. */
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <!-- Label and Input field for weight (lbs) -->
+    <label for="user-weight">Enter your weight:</label>
+    <input id="user-weight" type="number" placeholder="Weight (lbs)" />
+
+    <!-- Label and Select element for planets -->
+    <label for="planets">Choose a planet:</label>
+    <select id="planets">
+    </select>
+
+    <!-- Paragraph element for displaying output -->
+    <p id="output" aria-live="assertive"></p>
+
+    <!-- Button to trigger weight calculation -->
+    <button id="calculate-button">Calculate</button>
+    <script src="main.js" charset="utf-8"></script>
+
+</body>
+</html>
